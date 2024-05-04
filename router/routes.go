@@ -1,7 +1,7 @@
 package router
 
 import (
-	"net/http"
+	"lab-golang-api-crud/handler"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,34 +10,14 @@ func InitializeRouter(router *gin.Engine) {
 	v1 := router.Group("/api/v1")
 	{
 		// Show Opening
-		v1.GET("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Get Opening",
-			})
-		})
+		v1.GET("/opening", handler.ShowOpeningHandler)
 		// POST Opening
-		v1.POST("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Post Opening",
-			})
-		})
+		v1.POST("/opening", handler.CreateOpeningHandler)
 		// PUT Opening
-		v1.PUT("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "PUT Opening",
-			})
-		})
+		v1.PUT("/opening", handler.UpdateOpeningHandler)
 		// DELETE Opening
-		v1.DELETE("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "DELETE Opening",
-			})
-		})
-		// Show Openings
-		v1.GET("/openings", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Get Openings",
-			})
-		})
+		v1.DELETE("/opening", handler.DeleteOpeningHandler)
+		// List Openings
+		v1.GET("/openings", handler.ListOpeningHandler)
 	}
 }
